@@ -16,7 +16,7 @@
 
 (defun new-paths (path node net end)
   (mapcan #'(lambda (n)
-              (cond ((eql n end) (throw 'abort (reverse (cons n path))))
+              (cond ansi((eql n end) (throw 'abort (reverse (cons n path))))
                     ((not (member n path)) (list (cons n path)))
                     (t nil)))
           (cdr (assoc node net))))

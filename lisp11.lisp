@@ -1,0 +1,23 @@
+(defun map-range (fun start end)
+  (let ((step (if (< start end) '1+ '1-)))
+    (do ((i start (funcall step i))
+         (result nil (cons (funcall fun i) result)))
+        ((= i end) (reverse result)))))
+
+(defun every-range (fun start end)
+  (let ((step (if (< start end) '1+ '1-)))
+    (do ((i start (funcall step i)))
+        ((or (not (funcall fun i)) (= i end))
+         (= i end)))))
+
+(defun find-range (fun start end)
+  (let ((step (if (< start end) '1+ '1-)))
+    (do ((i start (funcall step i)))
+        ((or (funcall fun i ) (= i end))
+         (if (= i end) nil i)))))
+
+(defun reduce-range (fun start end init)
+  (let ((step (if (< start end) '1+ '1-)))
+    (do ((i start (funcall step i))
+         (result init (funcall fun result i)))
+        ((= i end) result))))

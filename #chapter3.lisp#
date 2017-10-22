@@ -22,7 +22,7 @@
            (format t " ")
            (if (listp (cdr lst))
                (show-list-helper (cdr lst))
-             (format t ". ~S" (cdr lst)))))
+             (format t ". ~S" (cdr lst))))))
 
 (eql (last lst) (car lst)
 

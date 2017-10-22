@@ -34,11 +34,13 @@
         (t (get-a-count (cdr lst)))))
 
 ;; 2-9
+; remove does not modify the original argument and instead returns the new list with the value removed. As a fix, I use the result of the remove expression directly as the argument of apply
 (defun summit (lst)
   (apply #'+ (remove nil lst)))
 
+; the original code never terminates because there is no base case to terminate the recursion. Here I added a case in the cond statement to check if (null lst) and return 0 if it is because the sum
+; of an empty list is 0. This allows the recursion to end.
 (defun summit (lst)
   (cond ((null lst) 0)
         ((null (car lst)) (summit (cdr lst)))
         (t (+ (car lst) (summit (cdr lst)))))) 
-              
